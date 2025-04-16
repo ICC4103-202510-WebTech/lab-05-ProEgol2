@@ -11,4 +11,8 @@ Rails.application.routes.draw do
 
   # Defines the root path route ("/")
   # root "posts#index"
+  get "/", to:"static_pages#home"
+  resources :users
+  resources :chats
+  resources :messages
 end

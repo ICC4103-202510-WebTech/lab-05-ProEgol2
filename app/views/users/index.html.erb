@@ -1,0 +1,32 @@
+<%= render "nav" %>
+
+<h2>Users:</h2>
+<% @users.each do |user| %>
+    <table>
+        <tr>
+            <th>ID: </th>
+            <td><%= link_to(user.id, user_path(user)) %></td>
+        </tr>
+        <tr>
+            <th>First Name: </th>
+            <td><%= user.first_name %></td>
+        </tr>
+        <tr>
+            <th>Last Name: </th>
+            <td><%= user.last_name %></td>
+        </tr>
+        <tr>
+            <th>email: </th>
+            <td><%= user.email %></td>
+        </tr>
+        <tr>
+            <th>Created at: </th>
+            <td><%= user.created_at %></td>
+        </tr>
+        <tr>
+            <th>Updated_at: </th>
+            <td><%= user.updated_at %></td>
+        </tr>
+    </table>
+    <br>
+<% end %>

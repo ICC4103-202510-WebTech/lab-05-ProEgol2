@@ -1,0 +1,32 @@
+<%= render "nav" %>
+
+<h2>Messages:</h2>
+<% @messages.each do |message| %>
+    <table>
+        <tr>
+            <th>ID: </th>
+            <td><%= link_to(message.id, message_path(message)) %></td>
+        </tr>
+        <tr>
+            <th>Chat ID: </th>
+            <td><%= message.chat_id %></td>
+        </tr>
+        <tr>
+            <th>User ID: </th>
+            <td><%= message.user_id %></td>
+        </tr>
+        <tr>
+            <th>Body: </th>
+            <td><%= message.body %></td>
+        </tr>
+        <tr>
+            <th>Created at: </th>
+            <td><%= message.created_at %></td>
+        </tr>
+        <tr>
+            <th>Updated_at: </th>
+            <td><%= message.updated_at %></td>
+        </tr>
+    </table>
+    <br>
+<% end %>

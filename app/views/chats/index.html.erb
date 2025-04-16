@@ -1,0 +1,28 @@
+<%= render "nav" %>
+
+<h2>Chats:</h2>
+<% @chats.each do |chat| %>
+    <table>
+        <tr>
+            <th>ID: </th>
+            <td><%= link_to(chat.id, chat_path(chat)) %></td>
+        </tr>
+        <tr>
+            <th>Sender ID: </th>
+            <td><%= chat.sender_id %></td>
+        </tr>
+        <tr>
+            <th>Receiver ID: </th>
+            <td><%= chat.receiver_id %></td>
+        </tr>
+        <tr>
+            <th>Created at: </th>
+            <td><%= chat.created_at %></td>
+        </tr>
+        <tr>
+            <th>Updated_at: </th>
+            <td><%= chat.updated_at %></td>
+        </tr>
+    </table>
+    <br>
+<% end %>
