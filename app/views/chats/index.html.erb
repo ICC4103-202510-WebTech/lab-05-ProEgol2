@@ -1,28 +1,23 @@
-<%= render "nav" %>
-
-<h2>Chats:</h2>
-<% @chats.each do |chat| %>
-    <table>
+<div class="table-responsive container justify-content-center" style="table-layout: fixed;">
+    <div class="d-flex justify-content-between">
+        <h2 class="">Chats</h2>
+        <a class="btn btn-outline-dark mt-2 mb-2"href="/chats/new">Add</a>
+    </div>
+    <table class="table w-100" style="table-layout: fixed;">
         <tr>
             <th>ID: </th>
-            <td><%= link_to(chat.id, chat_path(chat)) %></td>
-        </tr>
-        <tr>
             <th>Sender ID: </th>
-            <td><%= chat.sender_id %></td>
-        </tr>
-        <tr>
             <th>Receiver ID: </th>
-            <td><%= chat.receiver_id %></td>
+            <th>Created At: </th>
+            <th>Updated At: </th>
         </tr>
-        <tr>
-            <th>Created at: </th>
-            <td><%= chat.created_at %></td>
-        </tr>
-        <tr>
-            <th>Updated_at: </th>
-            <td><%= chat.updated_at %></td>
-        </tr>
-    </table>
-    <br>
-<% end %>
+        <% @chats.each do |chat| %>
+            <tr>
+                <td><%= link_to(chat.id, chat_path(chat)) %></td>
+                <td><%= chat.sender_id %></td>
+                <td><%= chat.receiver_id %></td>
+                <td><%= chat.created_at %></td>
+                <td><%= chat.updated_at %></td>
+            </tr>
+        <% end %>
+</table>

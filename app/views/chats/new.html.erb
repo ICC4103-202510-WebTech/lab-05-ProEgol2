@@ -1,0 +1,32 @@
+<div class="container justify-content-center">
+    <%= form_with model: @chat do |form| %>
+        <div class="d-flex justify-content-between">
+            <h2 class="">Create Chats</h2>
+            <%= form.submit "Save", class: "btn btn-outline-dark mt-2 mb-2" %>
+        </div>
+        <table class="table w-100" style="table-layout: fixed;">
+            <tr>
+                <th>ID: </th>
+                <th>Sender ID: </th>
+                <th>Receiver ID: </th>
+                <th>Created At: </th>
+                <th>Updated At: </th>
+            </tr>
+            <tr>
+                <td><%= @chat.id%></td>
+                <td><%= form.collection_select :sender_id, @users, :id, :full_name %></td>
+                <td><%= form.collection_select :receiver_id, @users, :id, :full_name %></td>
+                <td><%= @chat.created_at%></td>
+                <td><%= @chat.updated_at%></td>
+            </tr>
+        </table>
+        <% if @chat.errors.any? %>
+            <h5>Error</h5>
+            <ul>
+                <% @chat.errors.full_messages.each do |err| %>
+                    <li><%= err %></li>
+                <% end %>
+            </ul>
+        <% end %>
+    <% end %>
+</div>
