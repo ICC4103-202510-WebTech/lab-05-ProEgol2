@@ -1,23 +1,80 @@
 <div class="table-responsive container justify-content-center" style="table-layout: fixed;">
     <div class="d-flex justify-content-between">
-        <h2 class="">Users</h2>
+        <h2 class="">User</h2>
         <a class="btn btn-outline-dark mt-2 mb-2"href="/users/new">Add</a>
     </div>
     <table class="table w-100" style="table-layout: fixed;">
         <tr>
+            <th></th>
             <th>ID: </th>
             <th>First Name: </th>
             <th>Last Name: </th>
             <th>Email: </th>
             <th>Created At: </th>
             <th>Updated At: </th>
+            <th></th>
         </tr>
         <tr>
+            <td></td>
             <td><%= @user.id %></td>
             <td><%= @user.first_name %></td>
             <td><%= @user.last_name %></td>
             <td><%= @user.email %></td>
             <td><%= @user.created_at %></td>
             <td><%= @user.updated_at %></td>
+            <td><%= link_to("Edit", edit_user_path(@user), class: "btn btn-outline-dark") %></td>
         </tr>
-</table>
+    </table>
+
+    <div class = "mt-5"><h2>Participated Chats</h2></div>
+
+    <table class="table w-100" style="table-layout: fixed;">
+        <tr>
+            <th></th>
+            <th>ID: </th>
+            <th>Sender ID: </th>
+            <th>Receiver ID: </th>
+            <th>Created At: </th>
+            <th>Updated At: </th>
+            <th></th>
+        </tr>
+        <% @chats.each do |chat| %>
+            <tr>
+                <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark") %></td>
+                <td><%= chat.id %></td>
+                <td><%= chat.sender_id %></td>
+                <td><%= chat.receiver_id %></td>
+                <td><%= chat.created_at %></td>
+                <td><%= chat.updated_at %></td>
+                <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark") %></td>
+            </tr>
+        <% end %>
+    </table>
+
+    <div class = "mt-5"><h2>Sent Messages</h2></div>
+
+    <table class="table w-100" style="table-layout: fixed;">
+        <tr>
+            <th></th>
+            <th>ID: </th>
+            <th>Chat ID: </th>
+            <th>User ID: </th>
+            <th>Body: </th>
+            <th>Created At: </th>
+            <th>Updated At: </th>
+            <th></th>
+        </tr>
+        <% @messages.each do |message| %>
+            <tr>
+                <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <td><%= message.id %></td>
+                <td><%= message.chat_id %></td>
+                <td><%= message.user_id %></td>
+                <td><%= message.body %></td>
+                <td><%= message.created_at %></td>
+                <td><%= message.updated_at %></td>
+                <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>

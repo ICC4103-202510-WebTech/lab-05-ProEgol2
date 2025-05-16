@@ -5,17 +5,61 @@
     </div>
     <table class="table w-100" style="table-layout: fixed;">
         <tr>
+            <th></th>
             <th>ID: </th>
             <th>Sender ID: </th>
             <th>Receiver ID: </th>
             <th>Created At: </th>
             <th>Updated At: </th>
+            <th></th>
         </tr>
         <tr>
+            <td></td>
             <td><%= @chat.id %></td>
             <td><%= @chat.sender_id %></td>
             <td><%= @chat.receiver_id %></td>
             <td><%= @chat.created_at %></td>
             <td><%= @chat.updated_at %></td>
+            <td><%= link_to("Edit", edit_chat_path(@chat), class: "btn btn-outline-dark") %></td>
         </tr>
-</table>
+    </table>
+    <div class = "container">
+        <div class = "row justify-content-start mt-5">
+            <div class = "col-4">
+                <h4>Sender:</h4>
+                <p><%= @chat.sender.full_name %></p>
+            </div>
+            <div class = "col-4">
+                <h4>Receiver:</h4>
+                <p><%= @chat.receiver.full_name %></p>
+            </div>
+        </div>
+    </div>
+    <div class="border border-dark mt-3"></div>
+    <div class = "mt-5 "><h2>Messages</h2></div>
+
+    <table class="table w-100" style="table-layout: fixed;">
+        <tr>
+            <th></th>
+            <th>ID: </th>
+            <th>Chat ID: </th>
+            <th>User ID: </th>
+            <th>Body: </th>
+            <th>Created At: </th>
+            <th>Updated At: </th>
+            <th></th>
+        </tr>
+        <% @messages.each do |message| %>
+            <tr>
+                <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <td><%= message.id %></td>
+                <td><%= message.chat_id %></td>
+                <td><%= message.user_id %></td>
+                <td><%= message.body %></td>
+                <td><%= message.created_at %></td>
+                <td><%= message.updated_at %></td>
+                <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+            </tr>
+        <% end %>
+    </table>
+</div>

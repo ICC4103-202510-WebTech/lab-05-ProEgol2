@@ -9,10 +9,49 @@
 #   end
 #rails db::reset
 
-p = 0
-10.times do |t|
-    User.create(email:"example@mail_%d.com" % [p], first_name:"fname_%d" % [p], last_name:"lname_%d"% [p])
-    Chat.create(sender_id:10+p, receiver_id:50+p)
-    Message.create(chat_id:10+p, user_id: 50+p, body:"Body example %d" % [p])
-    p+=1
-end
+users = User.create!([
+  {
+    first_name: "Rufus",
+    last_name: "Trufus",
+    email: "rufus@gmail.com"
+  },
+  {
+    first_name: "Jeremy",
+    last_name: "Elbertson",
+    email: "jer@gmail.com"
+  },
+  {
+    first_name: "Vincent",
+    last_name: "Melpert",
+    email: "vinny@gmail.com"
+  },
+  {
+    first_name: "Jobel",
+    last_name: "Fren",
+    email: "joey@gmail.com"
+  }
+])
+
+chats = Chat.create!([
+    {
+        sender: users[0],
+        receiver: users[1],
+    },
+    {
+        sender: users[2],
+        receiver: users[3],
+    }
+])
+
+messages = Message.create!([
+    {
+        chat: chats[0],
+        sender: users[0],
+        body: "This is a message"
+    },
+    {
+        chat: chats[1],
+        sender: users[2],
+        body: "This is another message"
+    }
+])

@@ -5,19 +5,23 @@
     </div>
     <table class="table w-100" style="table-layout: fixed;">
         <tr>
+            <th></th>
             <th>ID: </th>
             <th>Sender ID: </th>
             <th>Receiver ID: </th>
             <th>Created At: </th>
             <th>Updated At: </th>
+            <th></th>
         </tr>
         <% @chats.each do |chat| %>
             <tr>
-                <td><%= link_to(chat.id, chat_path(chat)) %></td>
+                <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark") %></td>
+                <td><%= chat.id %></td>
                 <td><%= chat.sender_id %></td>
                 <td><%= chat.receiver_id %></td>
                 <td><%= chat.created_at %></td>
                 <td><%= chat.updated_at %></td>
+                <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark") %></td>
             </tr>
         <% end %>
 </table>
