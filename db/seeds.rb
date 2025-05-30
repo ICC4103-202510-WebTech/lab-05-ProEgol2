@@ -13,22 +13,26 @@ users = User.create!([
   {
     first_name: "Rufus",
     last_name: "Trufus",
-    email: "rufus@gmail.com"
+    email: "rufus@gmail.com",
+    password: "123456"
   },
   {
     first_name: "Jeremy",
     last_name: "Elbertson",
-    email: "jer@gmail.com"
+    email: "jer@gmail.com",
+    password: "123456"
   },
   {
     first_name: "Vincent",
     last_name: "Melpert",
-    email: "vinny@gmail.com"
+    email: "vinny@gmail.com",
+    password: "123456"
   },
   {
     first_name: "Jobel",
     last_name: "Fren",
-    email: "joey@gmail.com"
+    email: "joey@gmail.com",
+    password: "123456"
   }
 ])
 

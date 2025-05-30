@@ -1,7 +1,6 @@
 <div class="table-responsive container justify-content-center" style="table-layout: fixed;">
     <div class="d-flex justify-content-between">
-        <h2 class="">Users</h2>
-        <a class="btn btn-outline-dark mt-2 mb-2"href="/users/new">Add</a>
+        <h3 class="">Users</h2>
     </div>
     <table class="table w-100" style="table-layout: fixed;">
         <tr>
@@ -23,13 +22,11 @@
                 <td><%= user.email %></td>
                 <td><%= user.created_at %></td>
                 <td><%= user.updated_at %></td>
-                <td><%= link_to("Edit", edit_user_path(user), class: "btn btn-outline-dark") %></td>
-            </tr>
-            <tr>
-                <td></td>
-                <td colspan="3" class=""><p>Sent Messages: <%= user.sent_messages.count %></p></td>
-                <td colspan="3" class=""><p>Received Messages: <%= user.received_messages.count %></p></td>
-                <td></td>
+                <% if can? :edit, user %>
+                    <td><%= link_to("Edit", edit_user_registration_path(user), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Edit", edit_user_registration_path(user), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
             </tr>
         <% end %>
 </table>

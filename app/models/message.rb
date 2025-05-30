@@ -21,4 +21,8 @@ class Message < ApplicationRecord
             errors.add(:user_id, "must match the chat's sender_id")
         end
     end
+
+    def receiver
+        return chat.receiver_id
+    end
 end

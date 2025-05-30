@@ -1,6 +1,6 @@
 <div class="table-responsive container justify-content-center" style="table-layout: fixed;">
     <div class="d-flex justify-content-between">
-        <h2 class="">Chats</h2>
+        <h3 class="">Chats</h3>
         <a class="btn btn-outline-dark mt-2 mb-2"href="/chats/new">Add</a>
     </div>
     <table class="table w-100" style="table-layout: fixed;">
@@ -15,13 +15,23 @@
         </tr>
         <% @chats.each do |chat| %>
             <tr>
-                <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark") %></td>
+                <% if can? :show, chat %>
+                    <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
+
                 <td><%= chat.id %></td>
                 <td><%= chat.sender_id %></td>
                 <td><%= chat.receiver_id %></td>
                 <td><%= chat.created_at %></td>
                 <td><%= chat.updated_at %></td>
-                <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark") %></td>
+
+                <% if can? :edit, chat %>
+                    <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
             </tr>
         <% end %>
 </table>

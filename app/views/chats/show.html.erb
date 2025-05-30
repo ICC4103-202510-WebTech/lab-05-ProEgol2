@@ -1,6 +1,6 @@
 <div class="table-responsive container justify-content-center" style="table-layout: fixed;">
     <div class="d-flex justify-content-between">
-        <h2 class="">Chat</h2>
+        <h3 class="">Chat</h3>
         <a class="btn btn-outline-dark mt-2 mb-2"href="/chats/new">Add</a>
     </div>
     <table class="table w-100" style="table-layout: fixed;">
@@ -20,7 +20,12 @@
             <td><%= @chat.receiver_id %></td>
             <td><%= @chat.created_at %></td>
             <td><%= @chat.updated_at %></td>
-            <td><%= link_to("Edit", edit_chat_path(@chat), class: "btn btn-outline-dark") %></td>
+
+            <% if can? :edit, @chat %>
+                <td><%= link_to("Edit", edit_chat_path(@chat), class: "btn btn-outline-dark") %></td>
+            <% else %>
+                <td><%= link_to("Edit", edit_chat_path(@chat), class: "btn btn-outline-dark disabled") %></td>
+            <% end %>
         </tr>
     </table>
     <div class = "container">
@@ -36,7 +41,7 @@
         </div>
     </div>
     <div class="border border-dark mt-3"></div>
-    <div class = "mt-5 "><h2>Messages</h2></div>
+    <div class = "mt-5 "><h3>Messages</h3></div>
 
     <table class="table w-100" style="table-layout: fixed;">
         <tr>
@@ -51,14 +56,24 @@
         </tr>
         <% @messages.each do |message| %>
             <tr>
-                <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <% if can? :show, message %>
+                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
+
                 <td><%= message.id %></td>
                 <td><%= message.chat_id %></td>
                 <td><%= message.user_id %></td>
                 <td><%= message.body %></td>
                 <td><%= message.created_at %></td>
                 <td><%= message.updated_at %></td>
-                <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+
+                <% if can? :edit, message %>
+                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
             </tr>
         <% end %>
     </table>

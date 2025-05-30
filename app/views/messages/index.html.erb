@@ -1,6 +1,6 @@
 <div class="table-responsive container justify-content-center">
     <div class="d-flex justify-content-between">
-        <h2 class="">Messages</h2>
+        <h3 class="">Messages</h2>
         <a class="btn btn-outline-dark mt-2 mb-2"href="/messages/new">Add</a>
     </div>
     <table class="table w-100" style="table-layout: fixed;">
@@ -16,14 +16,30 @@
         </tr>
         <% @messages.each do |message| %>
             <tr>
-                <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <% if can? :show, message %>
+                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
+
                 <td><%= message.id %></td>
                 <td><%= message.chat_id %></td>
                 <td><%= message.user_id %></td>
-                <td><%= message.body %></td>
+
+                <% if can? :show, message %>
+                    <td><%= message.body %></td>
+                <% else %>
+                    <td><p class="text-muted">Content Hidden</p></td>
+                <% end %>
+
                 <td><%= message.created_at %></td>
                 <td><%= message.updated_at %></td>
-                <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+
+                <% if can? :edit, message %>
+                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
+                <% else %>
+                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                <% end %>
             </tr>
         <% end %>
 </table>
