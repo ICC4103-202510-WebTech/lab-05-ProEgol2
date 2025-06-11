@@ -1,6 +1,6 @@
 class MessagesController < ApplicationController
 
-    before_action :set_message, only: [:show, :edit, :update]
+    before_action :set_message, only: [:show, :edit, :update, :destroy]
     before_action :set_users, only: [:new, :create, :edit, :update]
     before_action :set_chats, only: [:new, :create, :edit, :update]
     before_action :authenticate_user!, only:[:new, :edit, :show, :index]
@@ -39,6 +39,11 @@ class MessagesController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @message.destroy
+        redirect_to messages_path
     end
 
     private

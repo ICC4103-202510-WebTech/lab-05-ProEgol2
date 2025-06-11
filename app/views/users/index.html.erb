@@ -25,7 +25,7 @@
                 <% if can? :edit, user %>
                     <td><%= link_to("Edit", edit_user_registration_path(user), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Edit", edit_user_registration_path(user), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
             </tr>
         <% end %>

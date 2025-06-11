@@ -37,10 +37,6 @@
     </header>
     <br>
     <%= yield %>
-    <div class = "d-flex justify-content-center">
-      <% if user_signed_in? %>
-        <p class= "text-muted">(Logged as <%= current_user.first_name %>)</p>
-      <% end %>
-    </div>
+    
   </body>
 </html>

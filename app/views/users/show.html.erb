@@ -25,7 +25,7 @@
             <% if can? :edit, @user %>
                 <td><%= link_to("Edit", edit_user_registration_path(@user), class: "btn btn-outline-dark") %></td>
             <% else %>
-                <td><%= link_to("Edit", edit_user_registration_path(@user), class: "btn btn-outline-dark disabled") %></td>
+                <td></td>
             <% end %>
         </tr>
     </table>
@@ -47,19 +47,19 @@
                 <% if can? :show, chat %>
                     <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Show", chat_path(chat), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
 
                 <td><%= chat.id %></td>
-                <td><%= chat.sender_id %></td>
-                <td><%= chat.receiver_id %></td>
+                <td><%= chat.sender_id %> <span class="text-muted">(<%= chat.sender_name %>)</span></td>
+                <td><%= chat.receiver_id %> <span class="text-muted">(<%= chat.receiver_name %>)</span></td>
                 <td><%= chat.created_at %></td>
                 <td><%= chat.updated_at %></td>
 
                 <% if can? :edit, chat %>
                     <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Edit", edit_chat_path(chat), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
             </tr>
         <% end %>
@@ -83,7 +83,7 @@
                 <% if can? :show, message %>
                     <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
 
                 <td><%= message.id %></td>
@@ -102,7 +102,7 @@
                 <% if can? :edit, message %>
                     <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
             </tr>
         <% end %>

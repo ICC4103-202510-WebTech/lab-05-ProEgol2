@@ -1,13 +1,13 @@
 class ChatsController < ApplicationController
     
-    before_action :set_chat, only: [:show, :edit, :update]
+    before_action :set_chat, only: [:show, :edit, :update, :destroy]
     before_action :set_users, only: [:new, :create, :edit, :update]
     before_action :authenticate_user!, only:[:new, :edit, :show, :index]
 
     load_and_authorize_resource
     
     def index
-        @chats = Chat.all
+        @chats = Chat.participating(current_user.id)
     end
 
     def show
@@ -36,6 +36,11 @@ class ChatsController < ApplicationController
         else
             render :edit
         end
+    end
+
+    def destroy
+        @chat.destroy
+        redirect_to chats_path
     end
 
     private

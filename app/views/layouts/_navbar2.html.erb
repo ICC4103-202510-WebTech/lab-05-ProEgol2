@@ -1,20 +1,39 @@
 <nav class="navbar navbar-expand-lg">
   <div class="container-fluid">
+    <a class="navbar-brand mb-1">What's New</a>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav">
+        <% if user_signed_in? %>
+          <% if current_user.admin? %>
+            <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
+          <% else %>
+            <li class="nav-item"><%= link_to "My Profile", user_path(current_user), class: "nav-link" %></li>
+          <% end %>
+          <li class="nav-item"><a class="nav-link" href="/messages">Messages</a></li>
+          <li class="nav-item"><a class="nav-link" href="/chats">My Inbox</a></li>
+        <% end %>
+      </ul>
+    </div>
 
-    <a class="navbar-brand">What's New</a>
+    <% if user_signed_in? %>
+      <ul class="navbar-nav ms-3">
+        <li class="nav-item">
+          <a class="nav-link disabled" aria-disabled="true">(Logged as <%= current_user.first_name %>)</a>
+        </li>
+        <li class="nav-item">
+          <%= button_to "Log Out", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "nav-link" %>
+        </li>
+      </ul>
 
-    <ul class="navbar-nav me-5">
-      <li class="nav-item"><a class="nav-link" href="/users">Users</a></li>
-      <li class="nav-item"><a class="nav-link" href="/messages">Messages</a></li>
-      <li class="nav-item"><a class="nav-link" href="/chats">Chats</a></li>
-    </ul>
-
-    <% if current_page? new_user_session_path %>
-      <%= link_to "Or Sign Up", new_user_registration_path, class: "btn btn-outline-dark" %>
-    <% elsif user_signed_in? %>
-      <%= button_to "Logout", destroy_user_session_path, method: :delete, data: { turbo: false }, class: "btn btn-outline-dark" %>
     <% else %>
-      <%= link_to "Log In", new_user_session_path, class: "btn btn-outline-dark ms-3" %>
+      <ul class="navbar-nav ms-3">
+        <li class="nav-item">
+          <%= link_to "Login", new_user_session_path, class: "nav-link" %>
+        </li>
+        <li class="nav-item">
+          <%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %>
+        </li>
+      </ul>
     <% end %>
 
   </div>

@@ -5,20 +5,21 @@ class Ability
 
   def initialize(user)
 
-    can :index, User
-
     return unless user.present?
 
-    can [:new, :create, :index, :show], User
-    can [:edit, :update], User, id: user.id
+    can [:new, :create], User
+    can [:edit, :update, :show], User, id: user.id
 
     can [:new, :create, :index], Message
-    can [:edit, :update, :show], Message, user_id: user.id
+    can [:edit, :update, :show, :destroy], Message, user_id: user.id
     can [:show], Message, receiver: user.id
 
     can [:new, :create, :index], Chat
-    can [:edit, :update, :show], Chat, sender_id: user.id
+    can [:edit, :update, :show, :destroy], Chat, sender_id: user.id
     can [:show], Chat, receiver_id: user.id
+
+    return unless user.admin?
+    can :manage, :all
 
     # Define abilities for the user here. For example:
     #

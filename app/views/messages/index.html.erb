@@ -19,7 +19,7 @@
                 <% if can? :show, message %>
                     <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Show", message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
 
                 <td><%= message.id %></td>
@@ -38,7 +38,7 @@
                 <% if can? :edit, message %>
                     <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark") %></td>
                 <% else %>
-                    <td><%= link_to("Edit", edit_message_path(message), class: "btn btn-outline-dark disabled") %></td>
+                    <td></td>
                 <% end %>
             </tr>
         <% end %>

@@ -14,7 +14,8 @@ users = User.create!([
     first_name: "Rufus",
     last_name: "Trufus",
     email: "rufus@gmail.com",
-    password: "123456"
+    password: "123456",
+    admin: true
   },
   {
     first_name: "Jeremy",
